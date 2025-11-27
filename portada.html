@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mental Fit | Bienestar físico y mental desde casa</title>
+
+	<!-- Estilos -->
+	<link rel="stylesheet" href="css.css">
+
+	<!-- jQuery -->
+	<script src="jquery-3.6.0.min.js"></script>
+</head>
+<body>
+	<header>
+		<div class="logo">Mental Fit</div>
+		<nav class="nav">
+			<ul class="nav-links">
+				<li><a href="#" data-page="descarga.php">Descarga</a></li>
+				<li><a href="#" data-page="info.php">Info</a></li>
+				<li><a href="#" data-page="servicios.php">Servicios</a></li>
+			</ul>
+		</nav>
+		<div class="menu-toggle" id="menu-toggle">☰</div>
+	</header>
+  
+	<main>
+		<section id="inicio">
+			<h1>Mejora tu bienestar físico y mental desde casa</h1>
+			<p>Con Mental Fit puedes mantenerte activo, relajarte y cuidar tu salud sin salir de tu hogar.</p>
+		</section>
+
+		<!-- Aquí se cargará el contenido dinámico -->
+		<section id="contenido-dinamico"></section>
+	</main>
+
+
+	<script>
+		// --- Menú hamburguesa ---
+		$("#menu-toggle").click(function(){
+			$(".nav-links").toggleClass("active");
+		});
+
+		// --- Carga dinámica con jQuery ---
+		$(".nav-links a").click(function(e){
+			e.preventDefault(); // evita recargar la página
+			const page = $(this).data("page");
+
+			// Cargar el contenido del archivo PHP en el contenedor
+			$("#contenido-dinamico").hide().load(page, function() {
+				$(this).fadeIn(400);
+			});
+
+			// Cierra el menú en móviles
+			$(".nav-links").removeClass("active");
+		});
+	</script>
+</body>
+</html>
